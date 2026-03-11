@@ -1,14 +1,10 @@
-import { restaurants, type Restaurant } from '../constants/mock';
-import { RestaurantItem } from './restaurant';
+import { Layout } from './layout/layout';
+import { RestaurantsPage } from './restaurants-page/restaurants-page';
 
 export const App = () => {
   return (
-    <ol>
-      {restaurants.map((item: Restaurant) => (
-        <li key={item.name}>
-          <RestaurantItem item={item} />
-        </li>
-      ))}
-    </ol>
+    <Layout>
+      <RestaurantsPage title="Restaurants" />
+    </Layout>
   );
 };
