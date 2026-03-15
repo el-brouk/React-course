@@ -1,11 +1,14 @@
 import type { ReactNode } from 'react';
+import { ScrollProgressBar } from '../base/scroll-progress-bar';
+import styles from './layout.module.scss';
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <main>
+    <div className={styles.root}>
+      <ScrollProgressBar />
       <header>header</header>
-      {children}
+      <main>{children}</main>
       <footer>footer</footer>
-    </main>
+    </div>
   );
 };

@@ -1,9 +1,24 @@
 .restaurants-page {
-  &__tabs {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    gap: 10px;
+  padding-block: 32px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
   }
+}
+
+.restaurants-page__tabs {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 10px;
 }
