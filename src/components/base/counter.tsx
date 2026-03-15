@@ -1,6 +1,7 @@
 import { useState } from 'react';
-
+// кастомный хук
 const useCounter = () => {
+  // хук React
   const [count, setCount] = useState(0);
 
   return {

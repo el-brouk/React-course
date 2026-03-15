@@ -10,23 +10,27 @@ export const RestaurantItem = ({ item }: { item: Restaurant }) => {
 
       <Title title="Меню" />
       <ul>
-        {item.menu?.map((dish: MenuItem) => (
+        {item.menu.map((dish: MenuItem) => (
           <li key={dish.name}>
             <DishItem dish={dish} />
           </li>
         ))}
       </ul>
-
-      <Title title="Отзывы" />
-      <ul>
-        {item.reviews?.map((review: Review) => (
-          <li key={review.user}>
-            <span>{review.user}</span>
-            <span>: {review.text}</span>
-            <span> (Оценка: {review.rating})</span>
-          </li>
-        ))}
-      </ul>
+      {!!item.reviews.length && (
+        // Fragment React - пустой тег, который используется для группировки нескольких элементов без добавления дополнительных узлов в DOM
+        <>
+          <Title title="Отзывы" />
+          <ul>
+            {item.reviews.map((review: Review) => (
+              <li key={review.user}>
+                <span>{review.user}</span>
+                <span>: {review.text}</span>
+                <span> (Оценка: {review.rating})</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </section>
   );
 };
