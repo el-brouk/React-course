@@ -1,25 +1,24 @@
-import { restaurants, type Restaurant } from '../../constants/mock';
+import { restaurants } from '../../constants/mock';
 import { RestaurantItem } from '../restaurant/restaurant';
 import { useState } from 'react';
 import styles from './restaurants-page.module.scss';
 
-const s = styles as Record<string, string>;
-
 export const RestaurantsPage = ({ title }: { title: string }) => {
-  const [activeRestaurant, setActiveRestaurant] = useState(restaurants[0]?.id ?? null);
+  const [activeRestaurantId, setActiveRestaurantId] = useState(restaurants[0]?.id ?? null);
+  const activeRestaurant =
+    restaurants.find((restaurant) => restaurant.id === activeRestaurantId) ?? restaurants[0];
+
   return (
-    <div className={s['restaurants-page']}>
+    <div className={styles['restaurants-page']}>
       <h1>{title}</h1>
-      <ul className={s['restaurants-page__tabs']}>
-        {restaurants.map((item: Restaurant) => (
-          <li key={item.id}>
-            <button onClick={() => setActiveRestaurant(item.id)}>{item.name}</button>
+      <ul className={styles['restaurants-page__tabs']}>
+        {restaurants.map((restaurant) => (
+          <li key={restaurant.id}>
+            <button onClick={() => setActiveRestaurantId(restaurant.id)}>{restaurant.name}</button>
           </li>
         ))}
       </ul>
-      <RestaurantItem
-        item={restaurants.find((item) => item.id === activeRestaurant) ?? restaurants[0]}
-      />
+      <RestaurantItem item={activeRestaurant} />
     </div>
   );
 };
