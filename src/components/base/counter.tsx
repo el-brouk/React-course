@@ -16,14 +16,10 @@ export const Counter = ({ value = 0, onChange, min = 0, max = 5 }: CounterProps)
   };
 
   return (
-    <div className={styles['counter']}>
-      <button type="button" className={styles['counter__button']} onClick={decrement}>
-        -
-      </button>
-      <span className={styles['counter__value']}>{value}</span>
-      <button type="button" className={styles['counter__button']} onClick={increment}>
-        +
-      </button>
+    <div className={styles.counter}>
+      <button onClick={decrement}>-</button>
+      <span>{value}</span>
+      <button onClick={increment}>+</button>
     </div>
   );
 };

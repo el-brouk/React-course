@@ -7,11 +7,11 @@ import styles from './restaurant.module.scss';
 export const RestaurantItem = ({ item }: { item: Restaurant }) => {
   if (!item.name) return null;
   return (
-    <section className={styles['restaurant-item']}>
+    <section className={styles.restaurantItem}>
       <h2>{item.name}</h2>
 
       <Title title="Menu" />
-      <ul className={styles['restaurant-item__list']}>
+      <ul className={styles.restaurantItemList}>
         {item.menu.map((dish: MenuItem) => (
           <li key={dish.name}>
             <DishItem dish={dish} />
@@ -21,7 +21,7 @@ export const RestaurantItem = ({ item }: { item: Restaurant }) => {
 
       <Title title="Reviews" />
       {!!item.reviews.length && (
-        <ul className={styles['restaurant-item__list']}>
+        <ul className={styles.restaurantItemList}>
           {item.reviews.map((review: Review) => (
             <li key={review.user}>
               <span>{review.user}</span>

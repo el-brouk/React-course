@@ -1,10 +1,8 @@
 import { Counter } from '../base/counter';
+import { useState } from 'react';
 
-type DishCounterProps = {
-  value?: number;
-  onChange?: (value: number) => void;
-};
+export const DishCounter = () => {
+  const [quantity, setQuantity] = useState(0);
 
-export const DishCounter = ({ value, onChange }: DishCounterProps) => {
-  return <Counter value={value} onChange={onChange} min={0} max={5} />;
+  return <Counter value={quantity} onChange={setQuantity} min={0} max={5} />;
 };

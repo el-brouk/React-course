@@ -10,9 +10,9 @@ export const RestaurantsPage = ({ title }: { title: string }) => {
     restaurants.find((restaurant) => restaurant.id === activeRestaurantId) ?? restaurants[0];
 
   return (
-    <div className={styles['restaurants-page']}>
+    <div className={styles.restaurantsPage}>
       <h1>{title}</h1>
-      <ul className={styles['restaurants-page__tabs']}>
+      <ul className={styles.restaurantsPageTabs}>
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
             <Tab

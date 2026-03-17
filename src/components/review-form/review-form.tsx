@@ -59,8 +59,8 @@ export const ReviewForm = () => {
   //   const [address, setAddress] = useState("");
 
   return (
-    <form className={styles['review-form']} onSubmit={(event) => event.preventDefault()}>
-      <div className={styles['review-form__field']}>
+    <form className={styles.reviewForm} onSubmit={(event) => event.preventDefault()}>
+      <div className={styles.reviewFormField}>
         <label>name:</label>
         <input
           value={name}
@@ -70,14 +70,14 @@ export const ReviewForm = () => {
         />
       </div>
 
-      <div className={styles['review-form__field']}>
+      <div className={styles.reviewFormField}>
         <label>text:</label>
         <textarea
           value={text}
           onChange={(event) => dispatch({ type: SET_TEXT_ACTION, payload: event.target.value })}
         />
       </div>
-      <div className={styles['review-form__field']}>
+      <div className={styles.reviewFormField}>
         <label>rating:</label>
         <Counter
           value={Number(rating) || 0}
@@ -90,16 +90,16 @@ export const ReviewForm = () => {
           onChange={(event) => dispatch({ type: SET_RATING_ACTION, payload: event.target.value })}
         /> */}
       </div>
-      <div className={styles['review-form__controls']}>
+      <div className={styles.reviewFormControls}>
         <button
-          className={styles['review-form__button']}
+          className={styles.reviewFormButton}
           type="submit"
           onClick={() => dispatch({ type: SUBMIT_FORM_ACTION, payload: { ...form } })}
         >
           Add Review
         </button>
         <button
-          className={styles['review-form__button']}
+          className={styles.reviewFormButton}
           type="button"
           onClick={() => dispatch({ type: CLEAR_FORM_ACTION, payload: null })}
         >

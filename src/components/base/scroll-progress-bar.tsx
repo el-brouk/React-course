@@ -16,5 +16,5 @@ export const ScrollProgressBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return <div className={styles['scroll-progress-bar']} style={{ width: `${progress}%` }}></div>;
+  return <div className={styles['scroll-progress-bar']} style={{ width: `${progress}%` }} />;
 };
