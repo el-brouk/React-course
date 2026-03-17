@@ -1,4 +1,5 @@
 import { restaurants } from '../../constants/mock';
+import { Tab } from '../base/tab';
 import { RestaurantItem } from '../restaurant/restaurant';
 import { useState } from 'react';
 import styles from './restaurants-page.module.scss';
@@ -9,12 +10,17 @@ export const RestaurantsPage = ({ title }: { title: string }) => {
     restaurants.find((restaurant) => restaurant.id === activeRestaurantId) ?? restaurants[0];
 
   return (
-    <div className={styles['restaurants-page']}>
+    <div className={styles.restaurantsPage}>
       <h1>{title}</h1>
-      <ul className={styles['restaurants-page__tabs']}>
+      <ul className={styles.restaurantsPageTabs}>
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
-            <button onClick={() => setActiveRestaurantId(restaurant.id)}>{restaurant.name}</button>
+            <Tab
+              onClick={() => setActiveRestaurantId(restaurant.id)}
+              isActive={restaurant.id === activeRestaurantId}
+            >
+              {restaurant.name}
+            </Tab>
           </li>
         ))}
       </ul>
