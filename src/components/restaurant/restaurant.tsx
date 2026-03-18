@@ -3,8 +3,11 @@ import { Title } from '../base/title';
 import { DishItem } from '../dish-item/dish-item';
 import { ReviewForm } from '../review-form/review-form';
 import styles from './restaurant.module.scss';
+import { useContext } from 'react';
+import { UserContext } from '../user-provider/index.ts';
 
 export const RestaurantItem = ({ item }: { item: Restaurant }) => {
+  const { value: user } = useContext(UserContext);
   if (!item.name) return null;
   return (
     <section className={styles.restaurantItem}>
@@ -31,7 +34,7 @@ export const RestaurantItem = ({ item }: { item: Restaurant }) => {
           ))}
         </ul>
       )}
-      <ReviewForm />
+      {user === 'isLoggedIn' && <ReviewForm />}
     </section>
   );
 };
