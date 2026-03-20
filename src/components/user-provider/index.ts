@@ -1,6 +1,6 @@
 import { createContext, type Dispatch, type SetStateAction } from 'react';
 
-type User = 'unknown' | 'isLoggedIn';
+type User = 'unknown' | 'isAuthorized';
 
 export const UserContext = createContext<{
   value: User;

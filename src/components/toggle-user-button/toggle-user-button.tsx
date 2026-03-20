@@ -8,7 +8,7 @@ export const ToggleUserButton = () => {
   return (
     <button
       className={styles.toggleUserButton}
-      onClick={() => setUser((current) => (current === 'unknown' ? 'isLoggedIn' : 'unknown'))}
+      onClick={() => setUser((current) => (current === 'unknown' ? 'isAuthorized' : 'unknown'))}
     >
       {user === 'unknown' ? 'Log in' : 'Log out'}
     </button>

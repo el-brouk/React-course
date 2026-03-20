@@ -34,7 +34,7 @@ export const RestaurantItem = ({ item }: { item: Restaurant }) => {
           ))}
         </ul>
       )}
-      {user === 'isLoggedIn' && <ReviewForm />}
+      {user === 'isAuthorized' && <ReviewForm />}
     </section>
   );
 };

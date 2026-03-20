@@ -9,7 +9,7 @@ export const DishItem = ({ dish }: { dish: MenuItem }) => {
   return (
     <div>
       <p>{dish.name}</p>
-      {user === 'isLoggedIn' && <DishCounter />}
+      {user === 'isAuthorized' && <DishCounter />}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserContext } from './index';
 import React from 'react';
 
-type User = 'unknown' | 'isLoggedIn';
+type User = 'unknown' | 'isAuthorized';
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User>('unknown');

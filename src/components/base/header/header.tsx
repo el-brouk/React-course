@@ -10,7 +10,7 @@ export const Header = () => {
     <header className={styles.header}>
       Header
       <div className={styles.headerUser}>
-        <p>{user === 'isLoggedIn' ? 'Василий' : ''}</p>
+        <p>{user === 'isAuthorized' ? 'Василий' : ''}</p>
         <ToggleUserButton />
       </div>
     </header>
