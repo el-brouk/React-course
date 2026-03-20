@@ -13,6 +13,16 @@
     font-weight: 700;
     line-height: 32px;
   }
+
+  &.light {
+    background-color: #fff;
+    color: #000;
+  }
+
+  &.dark {
+    background-color: #656464;
+    color: #fff;
+  }
 }
 
 .restaurantsPageTabs {
