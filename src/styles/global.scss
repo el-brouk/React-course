@@ -25,3 +25,34 @@ h5,
 p {
   margin: 0;
 }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.page {
+  padding: 1rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+
+  &.light {
+    background-color: #fff;
+    color: #000;
+  }
+
+  &.dark {
+    background-color: #656464;
+    color: #fff;
+  }
+
+  a,
+  button {
+    color: #000;
+    background-color: #fff;
+  }
+}

@@ -1,40 +1,29 @@
-import { type MenuItem, type Restaurant, type Review } from '../../constants/mock';
-import { Title } from '../base/title';
-import { DishItem } from '../dish-item/dish-item';
-import { ReviewForm } from '../review-form/review-form';
 import styles from './restaurant.module.scss';
-import { useContext } from 'react';
-import { UserContext } from '../user-provider/index.ts';
+import { useSelector } from 'react-redux';
+import { selectRestaurantById } from '../../redux/entities/restaurants/slice.ts';
+import type { RootState } from '../../redux/store.ts';
+import { NavLink } from 'react-router';
 
-export const RestaurantItem = ({ item }: { item: Restaurant }) => {
-  const { value: user } = useContext(UserContext);
-  if (!item.name) return null;
+export const RestaurantItem = ({ id }: { id: string }) => {
+  const restaurant = useSelector((state: RootState) => selectRestaurantById(state, id));
+
+  if (!restaurant.name) return null;
   return (
     <section className={styles.restaurantItem}>
-      <h2>{item.name}</h2>
+      <h2>{restaurant.name}</h2>
 
-      <Title title="Menu" />
-      <ul className={styles.restaurantItemList}>
-        {item.menu.map((dish: MenuItem) => (
-          <li key={dish.name}>
-            <DishItem dish={dish} />
-          </li>
-        ))}
+      <ul className={styles.restaurantTabs}>
+        <li>
+          <NavLink className={styles.restaurantTab} to={`/restaurants/${id}/menu`}>
+            Menu
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={styles.restaurantTab} to={`/restaurants/${id}/reviews`}>
+            Reviews
+          </NavLink>
+        </li>
       </ul>
-
-      <Title title="Reviews" />
-      {!!item.reviews.length && (
-        <ul className={styles.restaurantItemList}>
-          {item.reviews.map((review: Review) => (
-            <li key={review.user}>
-              <span>{review.user}</span>
-              <span>: {review.text}</span>
-              <span> (Rating: {review.rating})</span>
-            </li>
-          ))}
-        </ul>
-      )}
-      {user === 'isAuthorized' && <ReviewForm />}
     </section>
   );
 };

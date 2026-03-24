@@ -1,0 +1,22 @@
+.restaurant-tab {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background-color: #f0f0f0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.active {
+  border-color: #d46b6b;
+  background-color: #fef2f2;
+  color: #d46b6b;
+}
+
+.inactive {
+  color: inherit;
+}

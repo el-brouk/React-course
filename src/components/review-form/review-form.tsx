@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import styles from './review-form.module.scss';
-import { Counter } from '../base/counter';
+import { ReviewCounter } from '../review-counter/review-counter';
 
 const INITIAL_FORM = {
   name: '',
@@ -79,9 +79,11 @@ export const ReviewForm = () => {
       </div>
       <div className={styles.reviewFormField}>
         <label>rating:</label>
-        <Counter
+        <ReviewCounter
           value={Number(rating) || 0}
-          onChange={(value) => dispatch({ type: SET_RATING_ACTION, payload: String(value) })}
+          onChange={(value: number) =>
+            dispatch({ type: SET_RATING_ACTION, payload: String(value) })
+          }
           min={1}
           max={5}
         />
