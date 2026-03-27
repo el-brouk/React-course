@@ -9,23 +9,17 @@ type CounterProps = {
   max?: number;
 };
 
-export const Counter = ({
-  value = 0,
-  increment,
-  decrement,
-  min = 0,
-  max,
-}: CounterProps) => {
+export const Counter = ({ value = 0, increment, decrement, min = 0, max }: CounterProps) => {
   const canDecrement = value > min;
   const canIncrement = max === undefined || value < max;
 
   return (
     <div className={styles.counter}>
-      <button type="button" onClick={() => canDecrement && decrement()} disabled={!canDecrement}>
+      <button type="button" onClick={() => decrement()} disabled={!canDecrement}>
         -
       </button>
       <span>{value}</span>
-      <button type="button" onClick={() => canIncrement && increment()} disabled={!canIncrement}>
+      <button type="button" onClick={() => increment()} disabled={!canIncrement}>
         +
       </button>
     </div>
