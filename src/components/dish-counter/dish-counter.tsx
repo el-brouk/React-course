@@ -1,8 +1,8 @@
 import { Counter } from '../base/counter';
-import { useState } from 'react';
+import { useCount } from './use-counter';
 
-export const DishCounter = () => {
-  const [quantity, setQuantity] = useState(0);
+export const DishCounter = ({ id }: { id: string }) => {
+  const { value, increment, decrement } = useCount({ id });
 
-  return <Counter value={quantity} onChange={setQuantity} min={0} max={5} />;
+  return <Counter value={value} increment={increment} decrement={decrement} min={0} />;
 };
