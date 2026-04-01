@@ -5,7 +5,7 @@ import { userSlice } from './entities/users/slice';
 import { dishSlice } from './entities/dishes/slice';
 import { cartSlice } from './entities/cart/slice';
 
-const loggerMiddleware: Middleware = (_api) => (next) => (action) => {
+const loggerMiddleware: Middleware = () => (next) => (action) => {
   console.log('dispatching', action);
   return next(action);
 };

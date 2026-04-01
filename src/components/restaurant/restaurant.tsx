@@ -15,7 +15,7 @@ export const RestaurantItem = ({ id }: { id: string }) => {
   const requestStatus = useSelector((state: RootState) => selectDetailRequestStatus(state));
   useEffect(() => {
     dispatch(getRestaurantById({ restaurantId: id }));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   if (requestStatus === 'pending' || requestStatus === 'idle') {
     return <div>Loading...</div>;

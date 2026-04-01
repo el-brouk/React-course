@@ -12,15 +12,17 @@ import { selectDetailRequestStatus } from '../../redux/entities/dishes/slice.ts'
 export const DishPage = () => {
   const { dishId } = useParams();
 
-  if (!dishId) return null;
-
   const dispatch = useDispatch<AppDispatch>();
   const { value: theme } = useContext(ThemeContext);
 
   const requestStatus = useSelector((state: RootState) => selectDetailRequestStatus(state));
+
   useEffect(() => {
+    if (!dishId) return;
     dispatch(getDishById({ dishId }));
-  }, [dispatch]);
+  }, [dispatch, dishId]);
+
+  if (!dishId) return null;
 
   if (requestStatus === 'pending' || requestStatus === 'idle') {
     return <div>Loading...</div>;

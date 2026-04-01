@@ -18,8 +18,6 @@ export const RestaurantReviewsPage = () => {
   const { value: user } = useContext(UserContext);
   const { restaurantId } = useParams();
 
-  if (!restaurantId) return null;
-
   const dispatch = useDispatch<AppDispatch>();
   const listRequestStatus = useSelector((state: RootState) => selectListRequestStatus(state));
 
@@ -28,8 +26,11 @@ export const RestaurantReviewsPage = () => {
   );
 
   useEffect(() => {
+    if (!restaurantId) return;
     dispatch(getReviews({ restaurantId }));
   }, [dispatch, restaurantId]);
+
+  if (!restaurantId) return null;
 
   if (listRequestStatus === 'pending' || listRequestStatus === 'idle') {
     return <div>Loading...</div>;

@@ -14,8 +14,6 @@ import { useEffect } from 'react';
 export const RestaurantMenuPage = () => {
   const { restaurantId } = useParams();
 
-  if (!restaurantId) return null;
-
   const dispatch = useDispatch<AppDispatch>();
 
   const restaurant = useSelector((state: RootState) =>
@@ -25,8 +23,11 @@ export const RestaurantMenuPage = () => {
   const requestStatus = useSelector((state: RootState) => selectListRequestStatus(state));
 
   useEffect(() => {
+    if (!restaurantId) return;
     dispatch(getDishes({ restaurantId }));
-  }, [dispatch]);
+  }, [dispatch, restaurantId]);
+
+  if (!restaurantId) return null;
 
   if (requestStatus === 'pending' || requestStatus === 'idle') {
     return <div>Loading...</div>;
