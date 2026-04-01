@@ -1,36 +1,37 @@
-import { useReducer } from 'react';
+import { useReducer, type FormEvent } from 'react';
 import styles from './review-form.module.scss';
 import { ReviewCounter } from '../review-counter/review-counter';
+import { addReview } from '../../redux/entities/reviews/add-review';
+import { firstMockUserId } from '../../constants/normalized-mock.js';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '../../redux/store';
 
 const INITIAL_FORM = {
-  name: '',
   rating: '',
   text: '',
 };
 
-const SET_NAME_ACTION = 'setNameAction';
 const SET_RATING_ACTION = 'setRatingAction';
 const SET_TEXT_ACTION = 'setTextAction';
 const CLEAR_FORM_ACTION = 'clearFormAction';
-const SUBMIT_FORM_ACTION = 'submitFormAction';
-
-// dispatch - функция, изменения состояния, которая отправляет action в reducer
-// dispatch(action);
 
 // reducer - функция, которая принимает state и action и возвращает обновленный state
 // state - текущее состояние
 // action - действие, которое нужно выполнить
 // payload - данные: строка или объект с ключами и значениями string
+// dispatch - функция изменения состояния, которая отправляет action в reducer
+// dispatch(action);
+
 type FormState = typeof INITIAL_FORM;
-type FormPayload = string | Record<string, string> | null;
+type FormPayload = string | null;
 
 const reducer = (state: FormState, action: { type: string; payload?: FormPayload }) => {
   const { type, payload } = action;
 
   switch (type) {
-    case SET_NAME_ACTION:
-      // ... - spread operator - копирует все свойства в новый объект (тк иначе react не будет знать, что значения изменились)
-      return { ...INITIAL_FORM, name: payload as string };
+    // case SET_NAME_ACTION:
+    // ... - spread operator - копирует все свойства в новый объект (тк иначе react не будет знать, что значения изменились)
+    // return { ...INITIAL_FORM, name: payload as string };
     case SET_RATING_ACTION:
       if (Number(payload) < 1 || Number(payload) > 5) {
         alert('Rating must be between 1 and 5');
@@ -41,40 +42,48 @@ const reducer = (state: FormState, action: { type: string; payload?: FormPayload
       return { ...state, text: payload as string };
     case CLEAR_FORM_ACTION:
       return INITIAL_FORM;
-    case SUBMIT_FORM_ACTION:
-      console.log('SUBMIT_FORM', payload);
-      return INITIAL_FORM;
     default:
       return INITIAL_FORM;
   }
 };
 
-export const ReviewForm = () => {
-  const [form, dispatch] = useReducer(reducer, INITIAL_FORM);
+export const ReviewForm = ({ restaurantId }: { restaurantId: string }) => {
+  const [form, formDispatch] = useReducer(reducer, INITIAL_FORM);
+  const reduxDispatch = useDispatch<AppDispatch>();
 
-  const { name, rating, text } = form;
+  const { rating, text } = form;
 
-  //   const [name, setName] = useState("");
-  //   const [text, setText] = useState("");
-  //   const [address, setAddress] = useState("");
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const ratingNum = Number(rating);
+    if (!rating || ratingNum < 1 || ratingNum > 5) {
+      alert('Rating must be between 1 and 5');
+      return;
+    }
+    try {
+      await reduxDispatch(
+        addReview({
+          restaurantId,
+          review: {
+            userId: firstMockUserId,
+            text,
+            rating: ratingNum,
+          },
+        })
+      ).unwrap();
+      formDispatch({ type: CLEAR_FORM_ACTION, payload: null });
+    } catch {
+      alert('Failed to add review');
+    }
+  };
 
   return (
-    <form className={styles.reviewForm} onSubmit={(event) => event.preventDefault()}>
-      <div className={styles.reviewFormField}>
-        <label>name:</label>
-        <input
-          value={name}
-          onChange={(event) => {
-            dispatch({ type: SET_NAME_ACTION, payload: event.target.value });
-          }}
-        />
-      </div>
-
+    <form className={styles.reviewForm} onSubmit={handleSubmit}>
       <div className={styles.reviewFormField}>
         <label>text:</label>
         <textarea
           value={text}
-          onChange={(event) => dispatch({ type: SET_TEXT_ACTION, payload: event.target.value })}
+          onChange={(event) => formDispatch({ type: SET_TEXT_ACTION, payload: event.target.value })}
         />
       </div>
       <div className={styles.reviewFormField}>
@@ -82,28 +91,20 @@ export const ReviewForm = () => {
         <ReviewCounter
           value={Number(rating) || 0}
           onChange={(value: number) =>
-            dispatch({ type: SET_RATING_ACTION, payload: String(value) })
+            formDispatch({ type: SET_RATING_ACTION, payload: String(value) })
           }
           min={1}
           max={5}
         />
-        {/* <input
-          value={rating}
-          onChange={(event) => dispatch({ type: SET_RATING_ACTION, payload: event.target.value })}
-        /> */}
       </div>
       <div className={styles.reviewFormControls}>
-        <button
-          className={styles.reviewFormButton}
-          type="submit"
-          onClick={() => dispatch({ type: SUBMIT_FORM_ACTION, payload: { ...form } })}
-        >
+        <button className={styles.reviewFormButton} type="submit">
           Add Review
         </button>
         <button
           className={styles.reviewFormButton}
           type="button"
-          onClick={() => dispatch({ type: CLEAR_FORM_ACTION, payload: null })}
+          onClick={() => formDispatch({ type: CLEAR_FORM_ACTION, payload: null })}
         >
           Clear
         </button>

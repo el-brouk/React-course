@@ -1,7 +1,9 @@
-export const normalizedRestaurants = [
+const normalizedRestaurants = [
   {
     id: "a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2",
-    name: "Dishoom",
+    name: "Вкусно и точка",
+    description: "Японская кухня",
+    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
     menu: [
       "d75f762a-eadd-49be-8918-ed0daa8dd024",
       "c3cb8f92-a2ed-4716-92a1-b6ea813e9049",
@@ -15,6 +17,8 @@ export const normalizedRestaurants = [
   {
     id: "bb8afbec-2fec-491f-93e9-7f13950dd80b",
     name: "Homeslice",
+    description: "Итальянская кухня",
+    img: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
     menu: [
       "25402233-0095-49ea-9939-1e67ed89ffb9",
       "90902233-0095-49ea-9939-1e67ed89ffb9",
@@ -28,6 +32,8 @@ export const normalizedRestaurants = [
   {
     id: "982bfbce-c5e0-41a0-9f99-d5c20ecee49d",
     name: "Fabrique",
+    description: "Русская кухня",
+    img: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3264&q=80",
     menu: [
       "08c9ffa0-d003-4310-9e15-20978743296e",
       "64a4967c-2080-4a99-9074-4655a4569a95",
@@ -38,6 +44,8 @@ export const normalizedRestaurants = [
   {
     id: "d9241927-09e1-44f3-8986-a76346869037",
     name: "Flat Iron",
+    description: "Грузинская кухня",
+    img: "https://images.unsplash.com/photo-1559314809-0d155014e29e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
     menu: [
       "6c02c2ce-b868-4191-b4a7-8686429f4bac",
       "99bb6fbb-e53b-4b7e-b9c2-23b63b77385d",
@@ -49,7 +57,7 @@ export const normalizedRestaurants = [
   },
 ];
 
-export const normalizedDishes = [
+const normalizedProducts = [
   {
     id: "d75f762a-eadd-49be-8918-ed0daa8dd024",
     name: "Chicken tikka masala",
@@ -112,7 +120,7 @@ export const normalizedDishes = [
   },
 ];
 
-export const normalizedReviews = [
+const normalizedReviews = [
   {
     id: "5909796d-5030-4e36-adec-68b8f9ec2d96",
     userId: "a304959a-76c0-4b34-954a-b38dbf310360",
@@ -163,7 +171,7 @@ export const normalizedReviews = [
   },
 ];
 
-export const normalizedUsers = [
+const normalizedUsers = [
   {
     id: "a304959a-76c0-4b34-954a-b38dbf310360",
     name: "Antony",
@@ -190,5 +198,9 @@ export const normalizedUsers = [
   },
 ];
 
-/** Временно для формы отзыва — id первого пользователя из моков */
-export const firstMockUserId = normalizedUsers[0].id;
+module.exports = {
+  products: normalizedProducts,
+  restaurants: normalizedRestaurants,
+  reviews: normalizedReviews,
+  users: normalizedUsers,
+};
