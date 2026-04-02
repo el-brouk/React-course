@@ -18,7 +18,7 @@ export const Header = () => {
         </li>
       </ul>
       <div className={styles.headerUser}>
-        <p>{user === 'isAuthorized' ? 'Василий' : ''}</p>
+        <p>{user?.name}</p>
         <ToggleUserButton />
       </div>
     </header>

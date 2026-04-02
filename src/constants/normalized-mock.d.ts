@@ -28,3 +28,4 @@ export const normalizedRestaurants: NormalizedRestaurant[];
 export const normalizedDishes: NormalizedDish[];
 export const normalizedReviews: NormalizedReview[];
 export const normalizedUsers: NormalizedUser[];
+export const firstMockUserId: string;

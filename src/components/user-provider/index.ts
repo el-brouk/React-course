@@ -1,11 +1,14 @@
 import { createContext, type Dispatch, type SetStateAction } from 'react';
 
-type User = 'unknown' | 'isAuthorized';
+export type User = {
+  id: string;
+  name: string;
+};
 
 export const UserContext = createContext<{
-  value: User;
-  setUser: Dispatch<SetStateAction<User>>;
+  value: User | null;
+  setUser: Dispatch<SetStateAction<User | null>>;
 }>({
-  value: 'unknown',
+  value: null,
   setUser: () => {},
 });
