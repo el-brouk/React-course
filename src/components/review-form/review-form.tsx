@@ -2,9 +2,10 @@ import { useReducer, type FormEvent } from 'react';
 import styles from './review-form.module.scss';
 import { ReviewCounter } from '../review-counter/review-counter';
 import { addReview } from '../../redux/entities/reviews/add-review';
-import { firstMockUserId } from '../../constants/normalized-mock.js';
 import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '../../redux/store';
+import { UserContext } from '../user-provider/index';
+import { useContext } from 'react';
 
 const INITIAL_FORM = {
   rating: '',
@@ -50,6 +51,7 @@ const reducer = (state: FormState, action: { type: string; payload?: FormPayload
 export const ReviewForm = ({ restaurantId }: { restaurantId: string }) => {
   const [form, formDispatch] = useReducer(reducer, INITIAL_FORM);
   const reduxDispatch = useDispatch<AppDispatch>();
+  const { value: user } = useContext(UserContext);
 
   const { rating, text } = form;
 
@@ -65,7 +67,7 @@ export const ReviewForm = ({ restaurantId }: { restaurantId: string }) => {
         addReview({
           restaurantId,
           review: {
-            userId: firstMockUserId,
+            userId: user?.id ?? '',
             text,
             rating: ratingNum,
           },

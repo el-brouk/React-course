@@ -56,7 +56,7 @@ export const RestaurantReviewsPage = () => {
           ))}
         </ul>
       )}
-      {user === 'isAuthorized' && <ReviewForm restaurantId={restaurantId} />}
+      {user !== null && <ReviewForm restaurantId={restaurantId} />}
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const DishItem = ({ id }: { id: string }) => {
       <p>{dish.name}</p>
       <p>Price: {dish.price} coins</p>
       <p>Ingredients: {dish.ingredients.join(', ')}</p>
-      {user === 'isAuthorized' && <DishCounter id={id} />}
+      {user !== null && <DishCounter id={id} />}
     </div>
   );
 };
