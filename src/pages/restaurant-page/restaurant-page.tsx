@@ -16,6 +16,7 @@ export const RestaurantPage = () => {
         dark: theme === 'dark',
       })}
     >
+      {/* this are direct children of the RestaurantPage component, they will be rerendered when the RestaurantPage component is rerendered */}
       <RestaurantItem id={restaurantId} />
       <Outlet />
     </div>
